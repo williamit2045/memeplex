@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content.title %> - Memeplex</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-lg mb-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <a href="/" class="flex items-center py-4">
+                        <span class="font-semibold text-gray-500 text-lg">Memeplex</span>
+                    </a>
+                    <a href="/create" class="flex items-center py-4 text-gray-500 hover:text-gray-700">
+                        Create Content
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <article class="bg-white shadow-lg rounded-lg p-6">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4"><%= content.title %></h1>
+                <div class="text-sm text-gray-500 mb-8">
+                    Posted <%= new Date(content.created_at).toLocaleDateString() %>
+                </div>
+                <div class="prose max-w-none mb-8">
+                    <%= content.body %>
+                </div>
+
+                <!-- Tags Section -->
+                <div class="border-t pt-4">
+                    <h3 class="text-lg font-bold mb-4">Categories</h3>
+                    
+                    <!-- Tag List -->
+                    <div class="mb-4 flex flex-wrap gap-2" id="tagList">
+                        <% if (categories && categories.length > 0) { %>
+                            <% tags.forEach(categories => { %>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                                    <%= category.name %>
+                                </span>
+                            <% }) %>
+                        <% } %>
+                    </div>
+
+                    <!-- Add Tag Form -->
+                    <form action="/Categorize/<%= content.id %>" method="POST" class="flex gap-2">
+                        <input type="text" name="tagName" 
+                               class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                               placeholder="Enter a tag">
+                        <button type="submit"
+                                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            Add Category
+                        </button>
+                    </form>
+                </div>
+            </article>
+            
+            <div class="mt-6">
+                <a href="/" class="text-blue-600 hover:text-blue-800">← Back to Home</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
