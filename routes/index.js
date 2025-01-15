@@ -7,6 +7,15 @@ const { pool } = require('../config/database');
 // 🏠 Home Page Route
 // ------------------------------------
 router.get('/', async (req, res) => {
+    if (!pool) {
+        console.warn('⚠️ Database connection is not configured. Returning sample content.');
+        return res.render('home', {
+            title: 'Home - Memeplex',
+            content: [],
+            pageStyle: 'home'
+        });
+    }
+
     try {
         const result = await pool.query('SELECT * FROM content ORDER BY created_at DESC');
         res.render('home', { title: 'Home - Memeplex', content: result.rows, pageStyle: 'home' });
@@ -32,17 +41,19 @@ router.get('/search', async (req, res) => {
 });
 
 // ------------------------------------
-// 🌂️ Tags Page Route (Search and List Tags)
+// 🌂 Tags Page Route
 // ------------------------------------
 router.get('/tags', async (req, res) => {
-    try {
-        if (req.xhr) {
-            // AJAX request for dropdown search
-            const tags = await pool.query('SELECT * FROM tags ORDER BY name ASC');
-            return res.json(tags.rows);
-        }
+    if (!pool) {
+        console.warn('⚠️ Database connection is not configured. Returning sample tags.');
+        return res.render('tags', {
+            title: 'Tags - Memeplex',
+            tags: [],
+            pageStyle: 'tags'
+        });
+    }
 
-        // Render tags page
+    try {
         const tags = await pool.query('SELECT * FROM tags ORDER BY name ASC');
         res.render('tags', { title: 'Tags - Memeplex', tags: tags.rows, pageStyle: 'tags' });
     } catch (err) {
@@ -52,11 +63,19 @@ router.get('/tags', async (req, res) => {
 });
 
 // ------------------------------------
-// 🗰 Blogs Page Route (Default Sorting: Most Tags)
+// 🗰 Blogs Page Route
 // ------------------------------------
 router.get('/blogs', async (req, res) => {
+    if (!pool) {
+        console.warn('⚠️ Database connection is not configured. Returning sample blogs.');
+        return res.render('blogs', {
+            title: 'Blogs - Memeplex',
+            content: [],
+            pageStyle: 'blogs'
+        });
+    }
+
     try {
-        // Query to get blogs with the count of associated tags, sorted by tag count in descending order
         const result = await pool.query(`
             SELECT content.*, COUNT(content_tags.tag_id) AS tag_count
             FROM content
@@ -64,8 +83,6 @@ router.get('/blogs', async (req, res) => {
             GROUP BY content.id
             ORDER BY tag_count DESC
         `);
-
-        // Render the blogs page with the sorted content
         res.render('blogs', { title: 'Blogs - Memeplex', content: result.rows, pageStyle: 'blogs' });
     } catch (err) {
         console.error('Error loading blogs:', err);

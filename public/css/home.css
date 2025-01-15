@@ -12,8 +12,8 @@ body {
 /* Header */
 .header {
     background: linear-gradient(
-        rgba(5, 100, 100, 0.5),
-        rgba(5, 100, 100, 0.5)
+        rgba(12, 195, 190, 0.5),
+        rgba(12, 195, 190, 0.5)
     ),
     url('/images/dark-grey-terrazzo.webp');
     background-repeat: repeat;
@@ -56,7 +56,10 @@ body {
 
 /* Card Styles */
 .card {
-    background-color: white;
+    background-image: url('/images/country-quilt.webp');
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: center;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 1.5rem;
@@ -238,6 +241,13 @@ body {
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+}
+
+.info-banner {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    text-align: center;
+    margin-top: 1rem;
 }
 
 .info-button:hover {

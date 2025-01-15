@@ -1,9 +1,10 @@
 //app.js
 require('dotenv').config();
 const express = require('express');
-const { pool } = require('./config/database');
 const app = express();
 const routes = require('./routes/index');
+// Check for database connection
+const { pool } = process.env.DATABASE_URL ? require('./config/database') : { pool: null };
 
 // ------------------------------------
 // Middleware Setup
