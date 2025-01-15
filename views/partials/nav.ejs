@@ -1,0 +1,31 @@
+<!-- nav.ejs -->
+<nav class="navbar">
+    <div class="container">
+        <ul class="nav-links">
+            <li><a href="/">Memeplex</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blogs">Blogs</a></li>
+            <li><a href="/create">Create Content</a></li>
+            <li><a href="/tags">Tags</a></li>
+        </ul>
+
+        <button id="mobile-menu-button" class="mobile-menu-button">&#9776;</button>
+    </div>
+
+    <ul id="mobile-menu" class="mobile-menu hidden">
+        <li><a href="/">Memeplex</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blogs">Blogs</a></li>
+        <li><a href="/create">Create Content</a></li>
+        <li><a href="/tags">Tags</a></li>
+    </ul>
+</nav>
+
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>

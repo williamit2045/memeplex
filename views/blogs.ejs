@@ -1,0 +1,64 @@
+
+
+<!--views/blogs.ejs -->
+
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+
+<body>
+    <main class="blogs-container">
+        <div class="max-w-full mx-auto">
+            <h1 class="text-center">All Blogs</h1>
+
+           <!-- Sorting Dropdown -->
+            
+           <form id="sortForm">
+    <label for="sortBy">Sort by:</label>
+    <select id="sortBy" name="sortBy">
+        <option value="most-tags">Most Tags</option>
+        <option value="alphabetical">Alphabetical</option>
+        <option value="recent">Most Recent</option>
+        <option value="topic">Search Topic</option>
+    </select>
+    <input
+        type="text"
+        id="searchTopic"
+        class="hidden"
+        placeholder="Search for a topic..."
+    />
+</form>
+
+
+
+            <!-- Content Cards -->
+            <div id="content-cards">
+                <% if (typeof content !== 'undefined' && content.length > 0) { %>
+                    <% content.forEach(item => { %>
+                        <div class="card">
+                            <h2>
+                                <a href="/view/<%= item.id %>">
+                                    <%= item.title %>
+                                </a>
+                            </h2>
+                            <p class="collapsed-text">
+                                <%= item.body.substring(0, 200) %>...
+                            </p>
+                            <p class="expanded-text hidden">
+                                <%= item.body.substring(0, 500) %>
+                            </p>
+                            <div class="date">
+                                Posted <%= new Date(item.created_at).toLocaleDateString() %>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p>No content yet. Be the first to create something!</p>
+                <% } %>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/blogs.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+/* blogs.css */
+.blogs-container {
+    max-width: 1200px;
+    margin: 0 1vw;
+    padding: 0 auto;
+}
+
+.blogs-header {
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.sortForm {
+    background-color: black;
+    opacity: 0.8;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    background: rgba(38, 42, 37, 0.5);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(8px);
+}
+
+.sort-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+#sortBy {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: var(--text-primary);
+    min-width: 150px;
+}
+
+#topicSearch {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: var(--text-primary);
+    flex-grow: 1;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    height:25vh;
+    
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    height: 25vh;
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card h2 a {
+    color: var(--primary-green);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.card h2 a:hover {
+    color: #86efac;
+}
+
+.card .date {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+.collapsed-text, .expanded-text {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.expanded-text {
+    display: none;
+}
+
+.card:hover .collapsed-text {
+    display: none;
+}
+
+.card:hover .expanded-text {
+    display: block;
+}
+
+.tag-count {
+    display: inline-block;
+    background: rgba(74, 222, 128, 0.1);
+    color: var(--primary-green);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .sort-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #sortBy, #topicSearch {
+        width: 33vw%;
+    }
+    
+    .card {
+        padding: 1rem;
+    }
+}

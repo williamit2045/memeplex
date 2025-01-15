@@ -1,0 +1,70 @@
+/* tags.css */
+.tags-container {
+    padding: 2rem 0;
+}
+
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 2rem;
+    background: rgba(38, 42, 37, 0.5);
+    border-radius: 1rem;
+    backdrop-filter: blur(8px);
+}
+
+.tag {
+    background: rgba(74, 222, 128, 0.1);
+    color: #4ade80;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.tag:hover {
+    background: rgba(74, 222, 128, 0.2);
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Tag sizes based on usage */
+.tag-size-1 { font-size: 0.875rem; }
+.tag-size-2 { font-size: 1rem; }
+.tag-size-3 { font-size: 1.25rem; }
+.tag-size-4 { font-size: 1.5rem; }
+.tag-size-5 { font-size: 1.875rem; }
+
+.tag-stats {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.tags-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.tags-header h1 {
+    margin-bottom: 0.5rem;
+}
+
+.tags-header p {
+    color: var(--text-secondary);
+}
+
+.tag-search {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.tag-search input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}

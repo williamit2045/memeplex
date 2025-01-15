@@ -1,0 +1,103 @@
+/* view.css */
+.content-view {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: var(--card-bg);
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.content-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.content-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.content-meta {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.content-body {
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.content-body p {
+    margin-bottom: 1.5rem;
+}
+
+.content-tags {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.content-tag {
+    background: rgba(74, 222, 128, 0.1);
+    color: #4ade80;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.content-tag:hover {
+    background: rgba(74, 222, 128, 0.2);
+    transform: translateY(-1px);
+}
+
+.content-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+/* Tag input area */
+.tag-input-container {
+    margin-top: 1rem;
+}
+
+.tag-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.tag-suggestions {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.tag-suggestion-item {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tag-suggestion-item:hover {
+    background: rgba(74, 222, 128, 0.1);
+}

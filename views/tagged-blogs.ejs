@@ -1,0 +1,80 @@
+<!-- tagged-blogs.ejs -->
+
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+
+<body>
+    <main class="container mx-auto px-4">
+        <div class="max-w-full mx-auto">
+            <h1 class="text-center"><%= title %></h1>
+
+            <!-- Sorting Dropdown -->
+            <div class="mb-6 flex justify-between items-center">
+                <label for="sort">Sort by:</label>
+                <select id="sort">
+                    <option value="topic">Search Topic</option>
+                    <option value="alphabetical">Alphabetical</option>
+                    <option value="date">Date</option>
+                </select>
+            </div>
+
+            <!-- Content Cards -->
+            <div id="content-cards">
+                <% if (typeof content !== 'undefined' && content.length > 0) { %>
+                    <% content.forEach(item => { %>
+                        <div class="card">
+                            <h2>
+                                <a href="/view/<%= item.id %>">
+                                    <%= item.title %>
+                                </a>
+                            </h2>
+                            <p class="collapsed-text">
+                                <%= item.body.substring(0, 200) %>...
+                            </p>
+                            <p class="expanded-text hidden">
+                                <%= item.body.substring(0, 500) %>
+                            </p>
+                            <div class="date">
+                                Posted <%= new Date(item.created_at).toLocaleDateString() %>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <p>No content found for this tag. Be the first to create something!</p>
+                <% } %>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sorting functionality
+        document.getElementById('sort').addEventListener('change', function () {
+            const sortValue = this.value;
+            const contentCards = document.getElementById('content-cards');
+            const cardsArray = Array.from(contentCards.children);
+
+            if (sortValue === 'alphabetical') {
+                cardsArray.sort((a, b) => a.querySelector('h2').textContent.localeCompare(b.querySelector('h2').textContent));
+            } else if (sortValue === 'date') {
+                cardsArray.sort((a, b) => new Date(b.querySelector('.date').textContent) - new Date(a.querySelector('.date').textContent));
+            }
+
+            contentCards.innerHTML = '';
+            cardsArray.forEach(card => contentCards.appendChild(card));
+        });
+
+        // Expand and collapse card text on hover or tap
+        const cards = document.querySelectorAll('#content-cards > .card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('.collapsed-text').classList.add('hidden');
+                card.querySelector('.expanded-text').classList.remove('hidden');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.collapsed-text').classList.remove('hidden');
+                card.querySelector('.expanded-text').classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

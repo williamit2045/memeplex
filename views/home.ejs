@@ -1,0 +1,75 @@
+<!--views/home.ejs-->
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+
+<body>
+    <header class="header">
+        <p class="subtitle">A relational, knowledge-blogging platform for generated meta-knowledge out of user content.</p>
+    </header>
+
+    <main class="main-content">
+        <section class="card-section">
+            <!-- Card 1 -->
+            <div class="card" id="card1" onclick="handleCardInteraction(this)">
+                <h2 class="card-title">Enhance User Engagement</h2>
+                <div class="hover-content">
+                    <p class="hover-text"></p>
+                </div>
+            </div>
+        
+            <!-- Card 2 -->
+            <div class="card" id="card2" onclick="handleCardInteraction(this)">
+                <h2 class="card-title">Relational Knowledge Blog</h2>
+                <div class="hover-content">
+                    <p class="hover-text"></p>
+                </div>
+            </div>
+        
+            <!-- Card 3 -->
+            <div class="card" id="card3" onclick="handleCardInteraction(this)">
+                <h2 class="card-title">The Future: A Knowledge Economy</h2>
+                <div class="hover-content">
+                    <p class="hover-text"></p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="info-section">
+            <h2 class="info-title">Why Join Memeplex?</h2>
+            <p class="info-text">Join a community that values curiosity, exploration, and knowledge creation. Whether you're a writer, reader, or thinker, Memeplex is your space to share ideas and discover new perspectives.</p>
+            <a href="/register" class="info-button">Join Now</a>
+        </section>
+    </main>
+
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+        <div class="overlay-content">
+            <h2 class="overlay-title" id="overlayTitle"></h2>
+            <p class="overlay-text" id="overlayText"></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Memeplex. All rights reserved.</p>
+    </footer>
+</body>
+<script src="/js/home.js"></script>
+<style>
+    .hover-text {
+    font-family: "EB Garamond", "Palatino Linotype", Palatino, serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 1rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.subtitle {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 10px 0 0;
+}
+</style>

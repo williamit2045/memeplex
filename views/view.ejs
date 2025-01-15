@@ -1,70 +1,241 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content.title %> - Memeplex</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50">
-    <nav class="bg-white shadow-lg mb-8">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-between">
-                <div class="flex space-x-7">
-                    <a href="/" class="flex items-center py-4">
-                        <span class="font-semibold text-gray-500 text-lg">Memeplex</span>
-                    </a>
-                    <a href="/create" class="flex items-center py-4 text-gray-500 hover:text-gray-700">
-                        Create Content
-                    </a>
+<!-- views/view.ejs -->
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+
+<body>
+    <header class="header">
+        <h1 class="main-title"><%= content.title %></h1>
+        <p class="subtitle">Posted <%= new Date(content.created_at).toLocaleDateString() %></p>
+    </header>
+
+    <main class="main-content">
+        <div class="content-card card">
+            <div class="content-body">
+                <%= content.body %>
+            </div>
+
+            <!-- Tags Section -->
+            <div class="tags-section">
+                <h3 class="tags-title">Tags</h3>
+
+                <!-- Display Selected Tags -->
+                <div class="selected-tags" id="selectedTags">
+                    <% if (tags && tags.length > 0) { %>
+                        <% tags.forEach(tag => { %>
+                            <span class="tag">
+                                <%= tag.name %>
+                                <button onclick="removeTag('<%= tag.name %>')">&times;</button>
+                            </span>
+                        <% }) %>
+                    <% } else { %>
+                        <span class="no-tags">No tags yet. Be the first to add one!</span>
+                    <% } %>
                 </div>
+
+                <!-- Tag Search Input -->
+                <div class="tag-input-container">
+                    <input type="text" 
+                           id="tagSearch" 
+                           placeholder="Search for a topic..." 
+                           class="tag-input">
+                    <div id="tagSuggestions" class="tag-suggestions"></div>
+                </div>
+
+                <!-- Hidden Form to Submit Tags -->
+                <form action="/tag/<%= content.id %>" method="POST" id="tagForm" class="tag-form">
+                    <input type="hidden" name="tags" id="hiddenTags">
+                    <button type="submit" class="info-button">
+                        Submit Topics
+                    </button>
+                </form>
             </div>
         </div>
-    </nav>
-
-    <main class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-            <article class="bg-white shadow-lg rounded-lg p-6">
-                <h1 class="text-4xl font-bold text-gray-900 mb-4"><%= content.title %></h1>
-                <div class="text-sm text-gray-500 mb-8">
-                    Posted <%= new Date(content.created_at).toLocaleDateString() %>
-                </div>
-                <div class="prose max-w-none mb-8">
-                    <%= content.body %>
-                </div>
-
-                <!-- Tags Section -->
-                <div class="border-t pt-4">
-                    <h3 class="text-lg font-bold mb-4">Categories</h3>
-                    
-                    <!-- Tag List -->
-                    <div class="mb-4 flex flex-wrap gap-2" id="tagList">
-                        <% if (categories && categories.length > 0) { %>
-                            <% tags.forEach(categories => { %>
-                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                                    <%= category.name %>
-                                </span>
-                            <% }) %>
-                        <% } %>
-                    </div>
-
-                    <!-- Add Tag Form -->
-                    <form action="/Categorize/<%= content.id %>" method="POST" class="flex gap-2">
-                        <input type="text" name="tagName" 
-                               class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                               placeholder="Enter a tag">
-                        <button type="submit"
-                                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                            Add Category
-                        </button>
-                    </form>
-                </div>
-            </article>
-            
-            <div class="mt-6">
-                <a href="/" class="text-blue-600 hover:text-blue-800">← Back to Home</a>
-            </div>
+        
+        <div class="back-link">
+            <a href="/" class="info-button">← Back to Home</a>
         </div>
     </main>
+
+    <footer class="footer">
+        <p>© 2025 Memeplex. All rights reserved.</p>
+    </footer>
+
+    <style>
+        /* Inherit your existing body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styling matching your home.css */
+        .header {
+            background-color: #282c34;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .main-title {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            margin: 10px 0 0;
+        }
+
+        /* Main content styling */
+        .main-content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 0.7rem 2.4rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-image: url('/images/wov.webp');
+            background-repeat: repeat;
+            background-size: auto;
+        }
+
+        .content-body {
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        /* Tags section styling */
+        .tags-section {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .tags-title {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .selected-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            background: #007bff;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 5px;
+            font-size: 0.875rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tag button {
+            border: none;
+            background: none;
+            color: white;
+            cursor: pointer;
+            padding: 0;
+            font-size: 1rem;
+        }
+
+        .tag-input-container {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .tag-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 1rem;
+        }
+
+        .tag-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+        }
+
+        .tag-suggestion {
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .tag-suggestion:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Button styling matching your home.css */
+        .info-button {
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .info-button:hover {
+            background-color: #218838;
+        }
+
+        .back-link {
+            margin-top: 20px;
+        }
+
+        /* Footer styling matching your home.css */
+        .footer {
+            background-color: #282c34;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 40px;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 10px;
+            }
+            
+            .content-card {
+                width: 100%;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+    </style>
+
+    <script src="/js/view.js"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+body {
+    background-image: url('/images/wov.webp'); /* Path to your texture image */
+    background-repeat: repeat; /* Ensures the image is repeated */
+    background-size: auto; /* Keeps the original size of the texture */
+    background-color: #f9f9f9; /* Fallback background color */
+    color: #333;
+    margin: 0rem 0rem;
+    padding: 0rem 0rem;
+}
