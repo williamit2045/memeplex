@@ -1,9 +1,34 @@
 body {
-    background-image: url('/images/wov.webp'); /* Path to your texture image */
+    background-image: url('/images/gravel.webp'); /* Path to your texture image */
     background-repeat: repeat; /* Ensures the image is repeated */
     background-size: auto; /* Keeps the original size of the texture */
     background-color: #f9f9f9; /* Fallback background color */
     color: #333;
     margin: 0rem 0rem;
     padding: 0rem 0rem;
+}
+
+/* footer.css */
+footer {
+    width: 100%;
+    background-color: #2f4f4f; /* Adjust based on your theme */
+    color: #f0f0f0;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "EB Garamond", "Palatino Linotype", Palatino, Garamond, serif;
+}
+
+/* Sticky Footer Fix */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
 }

@@ -1,17 +1,17 @@
 // home.js
 const cardContent = {
     card1: {
-        hoverText: "Transform your reading experience with our tagging system. Create meaningful connections and deepen your understanding through active engagement.",
+        hoverText: "The gold of our era is knowledge, and by making reading a more engaging process, we can generate more of it.",
         overlayTitle: "Transform Your Reading Experience",
         overlayText: "Step into an interactive content platform where every tag and comment enriches understanding. Share insights, discover connections, and contribute to a growing knowledge network."
     },
     card2: {
-        hoverText: "Discover connections in our evolving knowledge network. Watch ideas grow and transform through community interaction.",
+        hoverText: "By making it more interactive to digest online content, our network can develop knowledge about public content for everyone.",
         overlayTitle: "Navigate the Knowledge Network",
         overlayText: "Explore a dynamic ecosystem of interconnected ideas. Uncover patterns and insights that emerge from our community's collective wisdom."
     },
     card3: {
-        hoverText: "Join a platform where knowledge creates value. Turn your insights into opportunities through our innovative rewards system.",
+        hoverText: "Readers and curators can both get paid getting better at communicating.",
         overlayTitle: "Pioneer the Knowledge Economy",
         overlayText: "Transform your intellectual contributions into tangible rewards. Our platform offers sponsorships and recognition for quality content creators."
     }

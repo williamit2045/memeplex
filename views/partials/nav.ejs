@@ -1,6 +1,6 @@
-<!-- nav.ejs -->
 <nav class="navbar">
     <div class="container">
+        <!-- Desktop Navigation Links -->
         <ul class="nav-links">
             <li><a href="/">Memeplex</a></li>
             <li><a href="/">Home</a></li>
@@ -9,9 +9,13 @@
             <li><a href="/tags">Tags</a></li>
         </ul>
 
-        <button id="mobile-menu-button" class="mobile-menu-button">&#9776;</button>
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="mobile-menu-button" aria-label="Toggle menu">
+            &#9776;
+        </button>
     </div>
 
+    <!-- Mobile Navigation Links -->
     <ul id="mobile-menu" class="mobile-menu hidden">
         <li><a href="/">Memeplex</a></li>
         <li><a href="/">Home</a></li>
@@ -22,10 +26,13 @@
 </nav>
 
 <script>
+    // Mobile Menu Toggle Script
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
 
+    // Toggle the mobile menu visibility on button click
     mobileMenuButton.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('show');
     });
 </script>
